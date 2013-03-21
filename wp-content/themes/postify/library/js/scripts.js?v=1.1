@@ -1,0 +1,65 @@
+$(document).ready(function() {
+	
+	$("a[href*='/vimeo.com'], a[href*='.vimeo.com']").addClass('fancybox');
+	$('.fancybox').click(function() {
+	          $.fancybox({
+	            'type' : 'iframe',
+	            'href' : this.href.replace(new RegExp('watch\\?v=', 'i'), 'embed/') + '?rel=0&autoplay=1',
+	            'overlayShow' : true,
+				'overlayOpacity' : 0.1,
+	            'centerOnScroll' : true,
+	            'speedIn' : 100,
+	            'speedOut' : 50,
+	            'width' : 823,
+	            'height' : 462
+	          });
+	          return false;
+	        });
+	
+	$(".flexslider").flexslider({
+		animation: "fade",
+		controlsContainer: "#main",
+		directionNav: false,
+		slideshowSpeed: 24000,
+		start: function() {
+			var background = $(".slides .flex-active-slide").attr('data-background');
+			var color = $(".slides .flex-active-slide").attr('data-color');
+			$("#slide").css('background-color', background);
+			$("#slide").css('color', color);
+		},
+		after: function() {
+			var background = $(".slides .flex-active-slide").attr('data-background');
+			var color = $(".slides .flex-active-slide").attr('data-color');
+			$("#slide").css('background-color', background);
+			$("#slide").css('color', color);
+		}
+	});
+	
+	var select = $('a[href$=".bmp"],a[href$=".gif"],a[href$=".jpg"],a[href$=".jpeg"],a[href$=".png"],a[href$=".BMP"],a[href$=".GIF"],a[href$=".JPG"],a[href$=".JPEG"],a[href$=".PNG"]');
+	var fancybox_attr = 'fancybox-thumb';
+	select.attr('rel', fancybox_attr).addClass(fancybox_attr);
+	select.fancybox({
+		prevEffect	: 'none',
+		nextEffect	: 'none',
+		helpers	: {
+			title	: {
+				type: 'inside',
+			}
+		}
+	});
+	
+	$("input[type=text], textarea").each(function() {
+		var default_value = this.value;
+		$(this).focus(function() {
+			if(this.value == default_value) {
+				this.value = '';
+			}
+		});
+		$(this).blur(function() {
+			if(this.value == '') {
+				this.value = default_value;
+			}
+		});
+	});
+	
+});

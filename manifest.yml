@@ -1,0 +1,17 @@
+--- 
+applications: 
+  .: 
+    url: ${name}.${target-base}
+    infra: eu-aws
+    mem: 128M
+    name: joao_postify
+    services: 
+      joao_mysql: 
+        type: mysql
+    instances: 1
+    framework: 
+      info: 
+        exec: 
+        mem: 128M
+        description: PHP Application
+      name: php
